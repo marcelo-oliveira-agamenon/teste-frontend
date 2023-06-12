@@ -43,15 +43,26 @@ export const useTaskStore = defineStore('tasks', {
     },
 
     addTask(task: Task) {
+      // Simulate api call with fetch
+      this.loadingTasks = true;
       const id = this.tasks.length + 1;
       task.id = id;
 
-      this.tasks.push(task);
+      setTimeout(() => {
+        this.tasks.push(task);
+        this.loadingTasks = false;
+      }, 1000);
     },
 
     removeTask(taskId: number) {
+      // Simulate api call with fetch
+      this.loadingTasks = true;
       const auxTasks = this.tasks.filter((task) => task.id !== taskId);
-      this.tasks = auxTasks;
+
+      setTimeout(() => {
+        this.tasks = auxTasks;
+        this.loadingTasks = false;
+      }, 1000);
     },
 
     markAsDone(taskId: number) {
